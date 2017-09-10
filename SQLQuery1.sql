@@ -158,7 +158,82 @@ ALTER TABLE OrderDetails ADD CONSTRAINT
 GO
 
 --Заполнение таблиц
+INSERT Customers (FName, LName, [Address], City, Phone, Email, DateInSystem)
+VALUES 
+('Иван', 'Иванов', 'Гагарина 36А', 'Москва', '79000000000', 'test0@mail.ru', DATEADD(DAY, -9, GETDATE())),
+('Петр', 'Петров', 'Энтузиастов 10', 'Владивосток', '79000000001', 'test1@mail.ru',DATEADD(DAY, -9, GETDATE())),
+('Марина', 'Морякова', 'Металлургов 7', 'Москва', '79000000002', 'test1@yandex.ru', DATEADD(DAY, -1, GETDATE())),
+('Нина', 'Ноткина', 'Тройкина 7', 'Сызрань', '79000000003', 'test2@mail.ru', DATEADD(DAY, -5, GETDATE()));
+GO
 
+SELECT * FROM Customers
+
+INSERT Orders (CustomerID, OrderDate)
+VALUES 
+(1, DATEADD(DAY, -9, GETDATE())),
+(1, DATEADD(DAY, -8, GETDATE())),
+(2, DATEADD(DAY, -7, GETDATE())),
+(3, DATEADD(DAY, -8, GETDATE())),
+(3, DATEADD(DAY, -0, GETDATE())),
+(4, DATEADD(DAY, -4, GETDATE()));
+GO
+
+SELECT * FROM Orders
+
+INSERT OrderDetails (OrderID, LineItem, ProductID, Qty, Price)
+VALUES 
+('1', '1', '2', '2', '300.00'),
+('1', '2', '3', '2', '520.00'),
+('2', '1', '7', '1', '1000.00'),
+('3', '1', '7', '1', '1000.00'),
+('3', '2', '1', '10', '255.00'),
+('3', '3', '6', '2', '1000.00'),
+('4', '1', '4', '15', '540.00'),
+('4', '2', '5', '4', '120.00'),
+('5', '1', '6', '3', '1000.00'),
+('6', '1', '5', '6', '120.00');
+GO
+
+SELECT * FROM OrderDetails
+
+INSERT Products ([Name])
+VALUES 
+('Пинцет изогнутый'),
+('Пинцет прямой'),
+('Ресницы цветные микс С'),
+('Клей Брайт'),
+('Клей Скай'),
+('Лампа Рексант'),
+('Ресницы цветные микс Д');
+GO
+
+SELECT * FROM Products
+
+INSERT ProductDetails (ID, Color, CountryOfOrigin, [Weight], [Description])
+VALUES 
+('1', 'золото', 'Корея', '12', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean massa ex, imperdiet non elementum sit amet, tincidunt eget dui.'),
+('2', 'мультицвет', 'Китай', '10', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean massa'),
+('3', 'синие', 'Корея', '10', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean massa ex, imperdiet non elementum sit amet, tincidunt eget dui.'),
+('4', '', 'Корея', '5', 'Lorem ipsum dolor sit amet'),
+('5', '', 'Китай', '5', 'Lorem'),
+('6', '', 'США', '2500', ''),
+('7', 'зеленые', 'Корея', '10', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean massa ex, imperdiet non elementum sit amet, tincidunt eget dui.');
+GO
+
+SELECT * FROM ProductDetails
+
+INSERT Stocks (ProductID, Qty)
+VALUES 
+('1', '100'),
+('2', '200'),
+('3', '5'),
+('4', '100'),
+('5', '250'),
+('6', '1000'),
+('7', '1');
+GO
+
+SELECT * FROM Stocks
 
 --Запросы
 --Функции
